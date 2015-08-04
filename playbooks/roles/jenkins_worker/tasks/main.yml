@@ -13,4 +13,3 @@
 - include: python.yml
 - include: ruby.yml
 - include: java.yml
-- include: test.yml

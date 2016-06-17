@@ -865,6 +865,8 @@ lms_auth_config:
                 render_template: 'edxmako.shortcuts.render_to_string'
   PROCTORING_BACKEND_PROVIDER: "{{ EDXAPP_PROCTORING_BACKEND_PROVIDER }}"
 
+lms_auth_config_gacco_1: "{{ lms_auth_config | dict_merge(lms_auth_config_gacco_extra) }}"
+lms_auth_config_gacco: "{{ lms_auth_config_gacco_1 | dict_merge(edxapp_generic_auth_config_gacco_extra) }}"
 
 lms_env_config:
   <<: *edxapp_generic_env
@@ -898,6 +900,9 @@ lms_env_config:
   ELASTIC_SEARCH_CONFIG: "{{ EDXAPP_ELASTIC_SEARCH_CONFIG }}"
   MAILCHIMP_NEW_USER_LIST_ID: "{{ EDXAPP_MAILCHIMP_NEW_USER_LIST_ID }}"
 
+lms_env_config_gacco_1: "{{ lms_env_config | dict_merge(lms_env_config_gacco_extra) }}"
+lms_env_config_gacco: "{{ lms_env_config_gacco_1 | dict_merge(generic_env_config_gacco_extra) }}"
+
 cms_auth_config:
   <<: *edxapp_generic_auth
   SEGMENT_KEY: "{{ EDXAPP_CMS_SEGMENT_KEY }}"
@@ -922,10 +927,17 @@ cms_auth_config:
                 fs_root:  "{{ edxapp_course_data_dir }}"
                 render_template: 'edxmako.shortcuts.render_to_string'
   PARSE_KEYS: "{{ EDXAPP_PARSE_KEYS }}"
+
+cms_auth_config_gacco_1: "{{ cms_auth_config | dict_merge(cms_auth_config_gacco_extra) }}"
+cms_auth_config_gacco: "{{ cms_auth_config_gacco_1 | dict_merge(edxapp_generic_auth_config_gacco_extra) }}"
+
 cms_env_config:
   <<: *edxapp_generic_env
   SITE_NAME:  "{{ EDXAPP_CMS_SITE_NAME }}"
   GIT_REPO_EXPORT_DIR: "{{ EDXAPP_GIT_REPO_EXPORT_DIR }}"
+
+cms_env_config_gacco_1: "{{ cms_env_config | dict_merge(cms_env_config_gacco_extra) }}"
+cms_env_config_gacco: "{{ cms_env_config_gacco_1 | dict_merge(generic_env_config_gacco_extra) }}"
 
 # install dir for the edx-platform repo
 edxapp_code_dir: "{{ edxapp_app_dir }}/edx-platform"

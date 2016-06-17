@@ -15,10 +15,3 @@
   when: platform_worker is defined
 - include: python_platform_worker.yml
   when: platform_worker is defined
-
-# Run appropriate tests
-- include: test.yml
-- include: test_platform_worker.yml
-  when: platform_worker is defined
-- include: test_sitespeed_worker.yml
-  when: sitespeed_worker is defined
